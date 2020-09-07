@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm,authenticate
 from django.contrib.auth.models import User
+from .models import Post
 class RegisterForm(UserCreationForm):
    
 
@@ -20,3 +21,8 @@ class LoginForm(forms.Form):
             if not user:
                 raise forms.ValidationError("Kullanıcı adını veya şifreyi yanlış girdiniz!")
         return super(LoginForm, self).clean()
+class PostForm(forms.ModelForm):
+    class Meta:
+        model=Post
+        
+        fields=["title","text"]
